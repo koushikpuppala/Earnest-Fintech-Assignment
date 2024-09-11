@@ -21,50 +21,50 @@
 ### Fetch All Tasks
 
 ```bash
-curl -X GET http://localhost:3000/api/tasks -H "Authorization: Bearer <your_jwt_token>"
+curl -X GET http://localhost:8080/api/tasks -H "Authorization: Bearer <your_jwt_token>"
 ```
 
 ### Create a New Task
 
 ```bash
-curl -X POST http://localhost:3000/api/tasks -H "Authorization: Bearer <your_jwt_token>" -H "Content-Type: application/json" -d '{"title": "New Task", "description": "Task description", "dueDate": "2023-12-31"}'
+curl -X POST http://localhost:8080/api/tasks -H "Authorization: Bearer <your_jwt_token>" -H "Content-Type: application/json" -d '{"title": "New Task", "description": "Task description", "dueDate": "2023-12-31"}'
 ```
 
 ### Update a Existing Task
 
 ```bash
-curl -X PUT http://localhost:3000/api/tasks/<task_id> -H "Authorization: Bearer <your_jwt_token>" -H "Content-Type: application/json" -d '{"title": "Updated Task", "description": "Updated description", "status": "completed", "dueDate": "2023-12-31"}'
+curl -X PUT http://localhost:8080/api/tasks/<task_id> -H "Authorization: Bearer <your_jwt_token>" -H "Content-Type: application/json" -d '{"title": "Updated Task", "description": "Updated description", "status": "completed", "dueDate": "2023-12-31"}'
 ```
 
 ### Delete a Task
 
 ```bash
-curl -X DELETE http://localhost:3000/api/tasks/<task_id> -H "Authorization: Bearer <your_jwt_token>"
+curl -X DELETE http://localhost:8080/api/tasks/<task_id> -H "Authorization: Bearer <your_jwt_token>"
 ```
 
 ### Register a New User
 
 ```bash
-curl -X POST http://localhost:3000/api/auth/register -H "Content-Type: application/json" -d '{"name": "<name>", "email": "<email>", "password": "<password>"}'
+curl -X POST http://localhost:8080/api/auth/register -H "Content-Type: application/json" -d '{"name": "<name>", "email": "<email>", "password": "<password>"}'
 ```
 
 ### Authenticate a User
 
 ```bash
-curl -X POST http://localhost:3000/api/auth/login -H "Content-Type: application/json" -d '{"email": "<email>", "password": "<password>"}'
+curl -X POST http://localhost:8080/api/auth/login -H "Content-Type: application/json" -d '{"email": "<email>", "password": "<password>"}'
 ```
 
 ### Send Verification Email
 
 ```bash
-curl -X POST http://localhost:3000/api/auth/send-verification -H
+curl -X POST http://localhost:8080/api/auth/send-verification -H
 "Content-Type: application/json" -d '{"email": "<email>"}'
 ```
 
 ### Verify User's Email
 
 ```bash
-curl -X GET http://localhost:3000/api/auth/verify/<token>
+curl -X GET http://localhost:8080/api/auth/verify/<token>
 ```
 
 This document provides a clear overview of the API endpoints for both authentication and task management, along with example requests for each endpoint. Make sure to replace placeholders like `<name>`, `<email>`, `<password>`, `<token>`, `<your_jwt_token>` and `<task_id>` with actual values when testing the endpoints.
