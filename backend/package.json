@@ -10,6 +10,10 @@
 		"build": "tsc",
 		"update": "ncu -u"
 	},
+	"engines": {
+		"node": ">=20",
+		"yarn": ">=4.4.1"
+	},
 	"dependencies": {
 		"@prisma/client": "^5.19.1",
 		"bcryptjs": "^2.4.3",
