@@ -49,7 +49,7 @@ const LoginForm = () => {
 
 		try {
 			await login(form.email, form.password)
-		} catch (error) {
+		} finally {
 			setLoading(false)
 		}
 	}

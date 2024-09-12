@@ -36,7 +36,7 @@ const RegisterForm = () => {
 
 		try {
 			await register(form.name, form.email, form.password)
-		} catch (error) {
+		} finally {
 			setLoading(false)
 		}
 	}
