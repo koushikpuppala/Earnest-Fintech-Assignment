@@ -13,6 +13,8 @@ Instructions to run the application are provided in the respective README files 
     -   User Email Verification
 -   View the list of tasks
 -   Filter tasks based on the task status (All, Completed, Pending, In Progress, and Overdue)
+-   Search tasks based on the task title
+-   Implemented pagination for the tasks list
 -   Create a new task with the following details
     -   Task Title
     -   Task Description (Optional)
