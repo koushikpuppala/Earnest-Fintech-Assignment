@@ -1,10 +1,10 @@
 export const SESSION_EXPIRE = 1000 * 60 * 60
 
-export const VERIFICATION_EXPIRE = 1000 * 60 * 5
+export const VERIFICATION_EXPIRE = 1000 * 60 * 10
 
-export const RESET_EXPIRE = 1000 * 60 * 5
+export const RESET_EXPIRE = 1000 * 60 * 10
 
-export const FORGOT_EXPIRE = 1000 * 60 * 5
+export const FORGOT_EXPIRE = 1000 * 60 * 10
 
 export const VERIFICATION_TEMPLATE = (name: string, token: string) => {
 	const verificationLink = `${process.env.FRONTEND_URL}/verify?token=${token}`
@@ -38,7 +38,7 @@ export const VERIFICATION_TEMPLATE = (name: string, token: string) => {
                 " />
             <p style="color: #151030; mso-line-height-rule: exactly">Dear ${name},</p>
             <p style="color: #151030; mso-line-height-rule: exactly">
-                Thank you for registering! Please verify your email by clicking the button below:
+                Thank you for registering! Please verify your email by clicking the button below: (expires in 10 minutes)
             </p>
             <div style="text-align: center; margin: 30px 0">
                 <a
@@ -55,7 +55,8 @@ export const VERIFICATION_TEMPLATE = (name: string, token: string) => {
                 </a>
             </div>
             <p style="color: #aaa6c3; mso-line-height-rule: exactly">
-                If you did not create an account, please ignore this email.
+                Link not working? Copy and paste the following link in your browser: <br />
+                <a href="${verificationLink}">${verificationLink}</a>
             </p>
             <hr style="border: none; border-top: 1px solid #ddd; margin: 10px 0; mso-border-top-alt: 1px solid #ddd" />
             <p

@@ -2,7 +2,9 @@ import { config } from 'dotenv'
 
 config({ path: '.env' })
 
-import { default as routes } from './routes'
+import { default as routes } from '@import/routes'
+import { overDueTasks } from '@import/services'
+import { schedule } from 'node-cron'
 import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
@@ -26,3 +28,5 @@ app.get('/health', (_req, res) => res.status(200).json({ message: 'API Health Ch
 app.use('/api', routes)
 
 app.listen(PORT, '0.0.0.0', () => console.log(`Server started on port ${PORT}`))
+
+schedule('0 0 * * *', overDueTasks)

@@ -13,6 +13,21 @@ export const getTasks = async (req: EnhancedRequest, res: Response) => {
 	}
 }
 
+export const getTask = async (req: EnhancedRequest, res: Response) => {
+	try {
+		const { id } = req.params
+
+		const task = await prisma.task.findUnique({ where: { id } })
+
+		if (!task) return res.status(404).json({ error: 'Task not found' })
+
+		return res.status(200).json({ message: 'Task fetched successfully', task })
+	} catch (error) {
+		console.error(error)
+		return res.status(500).json({ error: error instanceof Error ? error.message : 'Something went wrong' })
+	}
+}
+
 export const createTask = async (req: EnhancedRequest, res: Response) => {
 	try {
 		const { title, description, dueDate } = req.body
@@ -21,7 +36,7 @@ export const createTask = async (req: EnhancedRequest, res: Response) => {
 			data: {
 				title,
 				description,
-				dueDate,
+				dueDate: new Date(dueDate),
 				user: {
 					connect: { id: req.userId },
 				},
@@ -42,7 +57,7 @@ export const updateTask = async (req: EnhancedRequest, res: Response) => {
 
 		const task = await prisma.task.update({
 			where: { id },
-			data: { title, description, status, dueDate },
+			data: { title, description, status, dueDate: new Date(dueDate) },
 		})
 
 		return res.status(200).json({ message: 'Task updated successfully', task })

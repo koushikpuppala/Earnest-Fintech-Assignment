@@ -1,3 +1,4 @@
+import { prisma } from '@import/prisma'
 import { createTransport } from 'nodemailer'
 
 const mailer = createTransport({
@@ -16,3 +17,22 @@ export const sendMail = async (to: string, subject: string, html: string) =>
 		subject,
 		html,
 	})
+
+export const overDueTasks = async () => {
+	try {
+		const date = new Date()
+		const tasks = await prisma.task.findMany({
+			where: { dueDate: { lte: date } },
+			include: { user: true },
+		})
+
+		tasks.forEach(async task => {
+			await prisma.task.update({
+				where: { id: task.id },
+				data: { status: 'overdue' },
+			})
+		})
+	} catch (error) {
+		console.log(error)
+	}
+}

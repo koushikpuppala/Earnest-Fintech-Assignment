@@ -17,7 +17,7 @@ export const registration = async (req: EnhancedRequest, res: Response) => {
 
 		if (userExists) return res.status(400).json({ error: 'User already exists' })
 
-		const hashedPassword = await hash(password, process.env.HASH_SALT!)
+		const hashedPassword = await hash(password, Number(process.env.HASH_SALT!))
 
 		const { verificationToken } = await prisma.user.create({ data: { name, email, password: hashedPassword } })
 
@@ -46,9 +46,12 @@ export const authentication = async (req: EnhancedRequest, res: Response) => {
 
 		if (!valid) return res.status(401).json({ error: 'Invalid credentials' })
 
+		if (!user.verified)
+			return res.status(401).json({ error: 'User not verified. Please check your email to verify your account' })
+
 		const token = sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: SESSION_EXPIRE })
 
-		return res.status(200).json({ message: 'User logged in successfully', token, user })
+		return res.status(200).json({ message: 'User logged in successfully', token })
 	} catch (error) {
 		console.error(error)
 		return res.status(500).json({ error: error instanceof Error ? error.message : 'Something went wrong' })
@@ -80,7 +83,7 @@ export const sendVerification = async (req: EnhancedRequest, res: Response) => {
 
 export const verification = async (req: EnhancedRequest, res: Response) => {
 	try {
-		const { token } = req.params
+		const { token } = req.body
 
 		const { verificationToken } = verify(token, process.env.JWT_SECRET!) as VerificationDecodedData
 

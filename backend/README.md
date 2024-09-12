@@ -9,7 +9,6 @@ This folder contains the server-side code for the application. It handles the bu
 -   [Running the Application](#running-the-application)
 -   [Folder Structure](#folder-structure)
 -   [API Endpoints](#api-endpoints)
--   [Contributing](#contributing)
 -   [License](#license)
 
 ## Installation
@@ -44,6 +43,8 @@ To start the server in development mode, run:
 yarn dev
 ```
 
+The server will start at [http://localhost:8080](http://localhost:8080).
+
 To start the server in production mode, run:
 
 First, build the application:
@@ -57,6 +58,8 @@ Then, start the server:
 ```bash
 yarn start
 ```
+
+The server will start at [http://localhost:8080](http://localhost:8080).
 
 ## Folder Structure
 
@@ -92,10 +95,6 @@ backend
 ## API Endpoints
 
 The API endpoints are documented in the [API Documentation](API.md).
-
-## Contributing
-
-If you would like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
 ## License
 

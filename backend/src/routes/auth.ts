@@ -6,6 +6,6 @@ const router = Router()
 router.post('/register', registration)
 router.post('/login', authentication)
 router.post('/send-verification', sendVerification)
-router.post('/verify/:token', verification)
+router.post('/verify', verification)
 
 export default router
